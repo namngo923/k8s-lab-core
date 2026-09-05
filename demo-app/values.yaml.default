@@ -1,0 +1,19 @@
+replicaCount: 2
+image:
+  repository: nginx
+  tag: "1.27-alpine"
+service:
+  type: ClusterIP
+  port: 80
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: app.lab.local
+      paths:
+        - path: /
+          pathType: Prefix
+resources:
+  requests: { cpu: 50m, memory: 64Mi }
+  limits:   { memory: 128Mi }
+
